@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>sg.nus.edu.iss</groupId>
-	<artifactId>vttp5a-ssf-miniproject</artifactId>
+	<artifactId>vttp5a-ssf-day18l</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>vttp5a-ssf-miniproject</name>
-	<description>VTTP 5A Mini Project</description>
+	<name>vttp5a-ssf-day18l</name>
+	<description>VTTP 5a SSF Day 18 Lecture</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -53,17 +53,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish</groupId>
-			<artifactId>jakarta.json</artifactId>
-			<version>2.0.1</version>
-		</dependency>
-
-		<dependency>
-			<groupId>redis.clients</groupId>
-			<artifactId>jedis</artifactId>
-			<!-- <version>5.2.0</version> -->
 		</dependency>
 	</dependencies>
 

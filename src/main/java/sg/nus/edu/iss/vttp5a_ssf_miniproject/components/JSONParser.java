@@ -23,4 +23,13 @@ public class JSONParser {
         
     }
 
+    public String convertSymbolsJSONToList(JsonObject jsonObject){
+        StringBuilder sb = new StringBuilder();
+        sb.append(jsonObject.getString("description"));
+        sb.append(" (");
+        sb.append(jsonObject.getString("symbol"));
+        sb.append(")");
+        return sb.toString();
+    }
+
 }

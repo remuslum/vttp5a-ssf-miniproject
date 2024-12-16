@@ -10,19 +10,25 @@ import org.springframework.web.servlet.ModelAndView;
 
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.NewsArticle;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.FinancialDataService;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.StockSymbolService;
 
 @Controller
 @RequestMapping
 public class FinancialNewsController {
     @Autowired
     FinancialDataService financialDataService;
+
+    @Autowired
+    StockSymbolService stockSymbolService;
     
     @GetMapping
     public ModelAndView displayFinancialNews(){
         ModelAndView mav = new ModelAndView();
         List<NewsArticle> news = financialDataService.getNewsArticleList();
+        List<String> symbols = stockSymbolService.getStockSymbols("US");
 
         mav.addObject("newsArticles", news);
+        mav.addObject("symbols",symbols);
         mav.setViewName("news");
         return mav;
     }

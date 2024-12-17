@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.MyConstants;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.APILinks;
 
 @Component
 public class RequestBuilder {
@@ -15,16 +15,24 @@ public class RequestBuilder {
     private String apiKey;
 
     public ResponseEntity<String> getStockSymbols(String region){
-        String url = UriComponentsBuilder.fromUriString(MyConstants.API_LINK + MyConstants.STOCKSYMBOLS)
+        String url = UriComponentsBuilder.fromUriString(APILinks.API_LINK + APILinks.STOCKSYMBOLS)
         .queryParam("exchange", region).queryParam("token", apiKey).toUriString();
         return sendUrlGetRequest(url);
     }
 
     public ResponseEntity<String> getMarketNews(){
-        String url = UriComponentsBuilder.fromUriString(MyConstants.API_LINK + MyConstants.MARKETNEWS)
+        String url = UriComponentsBuilder.fromUriString(APILinks.API_LINK + APILinks.MARKETNEWS)
         .queryParam("token", apiKey).queryParam("category", "general").toUriString();
 
         return sendUrlGetRequest(url);  
+    }
+
+    public ResponseEntity<String> getCompanyNews(String symbol, String from, String to){
+        String url = UriComponentsBuilder.fromUriString(APILinks.API_LINK + APILinks.COMPANYNEWS)
+        .queryParam("token", apiKey).queryParam("symbol", symbol).queryParam("from", from)
+        .queryParam("to", to).toUriString();
+
+        return sendUrlGetRequest(url);
     }
 
     private ResponseEntity<String> sendUrlGetRequest(String url){

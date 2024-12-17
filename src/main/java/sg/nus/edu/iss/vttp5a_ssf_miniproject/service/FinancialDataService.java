@@ -1,8 +1,11 @@
 package sg.nus.edu.iss.vttp5a_ssf_miniproject.service;
 
 import java.io.StringReader;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +29,7 @@ public class FinancialDataService {
         return requestBuilder.getMarketNews();
     }
 
-    public List<NewsArticle> getNewsArticleList() {
+    private List<NewsArticle> getNewsArticleList() {
         String response = getMarketNews().getBody();
         List<NewsArticle> newsArticles = new ArrayList<>();
 
@@ -35,6 +38,14 @@ public class FinancialDataService {
             newsArticles.add(jsonParser.convertNewsJSONToNewsArticle(jsonArray.getJsonObject(i)));
         }
         return newsArticles;
-        
+    }
+
+    public List<NewsArticle> getLatestNewsArticles(){
+        List<NewsArticle> newsArticles = getNewsArticleList();
+
+        // return latest news up till 2 days ago
+        return newsArticles.stream().
+        filter(article -> ChronoUnit.DAYS.between(article.getDatetime(), LocalDate.now()) < 3)
+        .collect(Collectors.toList());
     }
 }

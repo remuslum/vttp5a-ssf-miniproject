@@ -6,6 +6,10 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisStandaloneConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisClientConfiguration;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
+
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.RedisConstants;
 
 @Configuration
 public class RedisConfig {
@@ -21,11 +25,15 @@ public class RedisConfig {
     @Value("${spring.data.redis.password}")
     private String redisPassword;
 
+    @Value("${spring.data.redis.database}")
+    private Integer redisDatabase;
+
     @Bean
     public JedisConnectionFactory jedisConnectionFactory(){
         RedisStandaloneConfiguration rsc = new RedisStandaloneConfiguration();
         rsc.setHostName(redisHost);
         rsc.setPort(redisPort);
+        rsc.setDatabase(redisDatabase);
         
         if(redisUsername.trim().length() > 0){
             rsc.setUsername(redisUsername);
@@ -38,4 +46,15 @@ public class RedisConfig {
 
         return jcf;
     }
+
+    @Bean(RedisConstants.REDISTEMPLATESYMBOLS)
+    public RedisTemplate<String, String> createRedisTemplate(){
+        RedisTemplate<String, String> redisTemplate = new RedisTemplate<>();
+        redisTemplate.setConnectionFactory(jedisConnectionFactory());
+        redisTemplate.setKeySerializer(new StringRedisSerializer());
+        redisTemplate.setHashKeySerializer(new StringRedisSerializer());
+        redisTemplate.setValueSerializer(new StringRedisSerializer());
+        return redisTemplate;
+    }
+
 }

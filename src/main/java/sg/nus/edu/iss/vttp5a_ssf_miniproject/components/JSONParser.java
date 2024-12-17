@@ -1,13 +1,16 @@
 package sg.nus.edu.iss.vttp5a_ssf_miniproject.components;
 
 
+import java.io.StringReader;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import jakarta.json.Json;
 import jakarta.json.JsonObject;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.NewsArticle;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.StockSymbol;
 
 @Component
 public class JSONParser {
@@ -23,13 +26,9 @@ public class JSONParser {
         
     }
 
-    public String convertSymbolsJSONToList(JsonObject jsonObject){
-        StringBuilder sb = new StringBuilder();
-        sb.append(jsonObject.getString("description"));
-        sb.append(" (");
-        sb.append(jsonObject.getString("symbol"));
-        sb.append(")");
-        return sb.toString();
+    public StockSymbol convertJSONStringToStockSymbol(String JSONString){
+        JsonObject jsonObject = Json.createReader(new StringReader(JSONString)).readObject();
+        return new StockSymbol(jsonObject.getString("symbol"), jsonObject.getString("description"), jsonObject.getString("type"));
     }
 
 }

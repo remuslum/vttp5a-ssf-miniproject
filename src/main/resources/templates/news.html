@@ -10,7 +10,7 @@
     <div class="container">
         <h1>Select Stock Symbol</h1>
         <select name="stockSymbol" class="form-select">
-            <option th:each="symbol : ${symbols}" th:text="${symbol}" th:value="${symbol}"></option>
+            <option th:each="symbol : ${symbols}" th:text="${symbol.symbol}" th:value="${symbol.symbol}"></option>
         </select>
     </div>
     <div class="container" th:each="newsArticle: ${newsArticles}">

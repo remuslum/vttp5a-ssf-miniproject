@@ -4,8 +4,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -17,12 +15,8 @@ public class RequestBuilder {
     private String apiKey;
 
     public ResponseEntity<String> getStockSymbols(String region){
-        MultiValueMap<String, String> params = new LinkedMultiValueMap<>();
-        params.add("token", apiKey);
-        params.add("exchange", region);
-
         String url = UriComponentsBuilder.fromUriString(MyConstants.API_LINK + MyConstants.STOCKSYMBOLS)
-        .queryParams(params).toUriString();
+        .queryParam("exchange", region).queryParam("token", apiKey).toUriString();
         return sendUrlGetRequest(url);
     }
 

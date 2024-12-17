@@ -35,6 +35,14 @@ public class RequestBuilder {
         return sendUrlGetRequest(url);
     }
 
+    public ResponseEntity<String> getCompanyFinancials(String symbol){
+        String url = UriComponentsBuilder.fromUriString(APILinks.API_LINK + APILinks.COMPANYFINANCIALS)
+        .queryParam("token", apiKey).queryParam("symbol",symbol).queryParam("metric", "all")
+        .toUriString();
+
+        return sendUrlGetRequest(url);
+    }
+
     private ResponseEntity<String> sendUrlGetRequest(String url){
         RequestEntity<Void> request = RequestEntity.get(url).build();
         RestTemplate restTemplate = new RestTemplate();

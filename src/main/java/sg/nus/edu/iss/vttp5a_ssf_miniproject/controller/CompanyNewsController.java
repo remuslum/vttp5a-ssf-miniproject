@@ -11,20 +11,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.CompanyFinancials;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.NewsArticle;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.CompanyNewsService;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.restservice.CompanyFinancialsService;
 
 @Controller
 @RequestMapping("/company")
 public class CompanyNewsController {
     @Autowired
     CompanyNewsService companyNewsService;
+
+    @Autowired
+    CompanyFinancialsService companyFinancialsService;
     
     @GetMapping("/{company-symbol}")
     public ModelAndView getCompanyNews(@PathVariable("company-symbol") String companySymbol){
         ModelAndView mav = new ModelAndView();
         List<NewsArticle> companyNews = companyNewsService.getCompanyNews(companySymbol);
+        CompanyFinancials companyFinancials = companyFinancialsService.getCompanyFinancials(companySymbol);
 
+        mav.addObject("companyFinancials", companyFinancials);
         mav.addObject("newsArticles", companyNews);
         mav.setViewName("companynews");
         return mav;

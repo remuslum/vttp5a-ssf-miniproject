@@ -5,4 +5,5 @@ public class APILinks {
     public static final String MARKETNEWS = "/news";
     public static final String STOCKSYMBOLS = "/stock/symbol";
     public static final String COMPANYNEWS = "/company-news";
+    public static final String COMPANYFINANCIALS = "/stock/metric";
 }

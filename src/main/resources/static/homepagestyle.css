@@ -1,12 +1,81 @@
+.navbar{
+    position: relative;
+    z-index:10;
+}
+
 .nav-link:hover{
     text-decoration: underline;
 }
 
 #main-div{
+    position: relative;
     width: 100%; /* Full width */
     height: 100vh;
-    background-image: url("/images/homepage_background.jpg.webp"); /* Replace with your image URL */
+    background-image: url("/images/homepage_background.jpeg"); /* Replace with your image URL */
     background-size: cover; /* Scale image to cover the entire div */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* No tiling of the image */
 }
+
+#main-div::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
+#main-div #sub-div {
+    z-index: 5;
+}
+
+#main-div .title {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-size: 8rem;
+    font-style: normal;
+    color:white;
+    z-index:5;
+}
+
+#main-div .subtitle {
+    text-align: center;
+    font-family: "Open Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    font-size: 1.5rem;
+    color: white;
+    z-index:5;
+}
+
+#main-div #link-text {
+    text-decoration: none;
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: italic;
+    color: white;
+}
+
+#main-div #link-text:hover {
+    color: #000;
+}
+
+.nav-item a {
+    font-family: "Montserrat", serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+}
+
+.nav-item .btn a{
+    text-decoration: none;
+    color: black;
+}
+  

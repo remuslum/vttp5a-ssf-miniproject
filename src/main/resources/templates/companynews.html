@@ -30,7 +30,24 @@
         <div class="card">
             <ul class="list-group list-group-flush" th:each="entry: ${companyFinancials.currentRatio}">
                 <li class="list-group-item">
-                    <p><span th:text="${entry.key}"></span> : <span th:text="${entry.value}"></span></p>
+                    <span th:if="${#strings.contains(entry.key, 'Information not available')}" th:text="${entry.key}"></span>
+                    <span th:if="${!#strings.contains(entry.key, 'Information not available')}" th:text="${entry.key + ' : ' + entry.value}"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="card">
+            <ul class="list-group list-group-flush" th:each="entry: ${companyFinancials.longtermDebtTotalCapital}">
+                <li class="list-group-item">
+                    <span th:if="${#strings.contains(entry.key, 'Information not available')}" th:text="${entry.key}"></span>
+                    <span th:if="${!#strings.contains(entry.key, 'Information not available')}" th:text="${entry.key + ' : ' + entry.value}"></span>
+                </li>
+            </ul>
+        </div>
+        <div class="card">
+            <ul class="list-group list-group-flush" th:each="entry: ${companyFinancials.returnOnEquity}">
+                <li class="list-group-item">
+                    <span th:if="${#strings.contains(entry.key, 'Information not available')}" th:text="${entry.key}"></span>
+                    <span th:if="${!#strings.contains(entry.key, 'Information not available')}" th:text="${entry.key + ' : ' + entry.value}"></span>
                 </li>
             </ul>
         </div>

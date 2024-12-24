@@ -5,6 +5,7 @@ import java.io.StringReader;
 import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -39,16 +40,25 @@ public class JSONParser {
         JsonObject jsonObject = Json.createReader(new StringReader(JSONString)).readObject();
         JsonObject metric = jsonObject.getJsonObject("metric");
         JsonObject quarterlyNumbers = jsonObject.getJsonObject("series").getJsonObject("quarterly");
-        
 
         return new CompanyFinancials(metric.getJsonNumber("52WeekHigh").doubleValue(), metric.getString("52WeekHighDate"),
         metric.getJsonNumber("52WeekLow").doubleValue(), metric.getString("52WeekLowDate"), 
-        metric.getJsonNumber("beta").doubleValue(), getMap("currentRatio", quarterlyNumbers),
-        new HashMap<>(), new HashMap<>());
+        metric.getJsonNumber("beta").doubleValue(), getMetrics("currentRatio", quarterlyNumbers),
+        getMetrics("longtermDebtTotalEquity", quarterlyNumbers), getMetrics("testing", quarterlyNumbers));
     }
 
-    private Map<String, Double> getMap(String quarterlyMetric, JsonObject jsonObject){
-        JsonArray jsonArray = jsonObject.getJsonArray(quarterlyMetric);
+    private Map<String, Double> getMetrics(String metricName, JsonObject jsonObject){
+        Optional<JsonArray> jsonArray = Optional.ofNullable(jsonObject.getJsonArray(metricName));
+        Map<String, Double> quarterMap = jsonArray.map((value) -> getMap(value))
+        .orElseGet(() -> {
+            Map<String, Double> fallBack = new HashMap<>();
+            fallBack.put("Information not available", -100.0);
+            return fallBack;
+        });
+        return quarterMap;
+    }
+
+    private Map<String, Double> getMap(JsonArray jsonArray){
         Map<String, Double> metricMap = new HashMap<>();
         for(int i = 0; i < 4; i++){
             JsonObject object = jsonArray.getJsonObject(i);

@@ -9,18 +9,18 @@ public class CompanyFinancials {
     private String allTimeLowDate;
     private double beta;
     private Map<String, Double> currentRatio;
-    private Map<String, Double> earningsPerShare;
+    private Map<String, Double> longtermDebtTotalCapital;
     private Map<String, Double> returnOnEquity;
 
     public CompanyFinancials(double allTimeHigh, String allTimeHighDate, double allTimeLow, String allTimeLowDate,
-            double beta, Map<String, Double> currentRatio, Map<String, Double> earningsPerShare, Map<String, Double> returnOnEquity) {
+            double beta, Map<String, Double> currentRatio, Map<String, Double> longtermDebtTotalCapital, Map<String, Double> returnOnEquity) {
         this.allTimeHigh = allTimeHigh;
         this.allTimeHighDate = allTimeHighDate;
         this.allTimeLow = allTimeLow;
         this.allTimeLowDate = allTimeLowDate;
         this.beta = beta;
         this.currentRatio = currentRatio;
-        this.earningsPerShare = earningsPerShare;
+        this.longtermDebtTotalCapital = longtermDebtTotalCapital;
         this.returnOnEquity = returnOnEquity;
     }
 
@@ -77,12 +77,12 @@ public class CompanyFinancials {
         this.currentRatio = currentRatio;
     }
 
-    public Map<String, Double> getEarningsPerShare() {
-        return earningsPerShare;
+    public Map<String, Double> getLongtermDebtTotalCapital() {
+        return longtermDebtTotalCapital;
     }
 
-    public void setEarningsPerShare(Map<String, Double> earningsPerShare) {
-        this.earningsPerShare = earningsPerShare;
+    public void setLongtermDebtTotalCapital(Map<String, Double> longtermDebtTotalCapital) {
+        this.longtermDebtTotalCapital = longtermDebtTotalCapital;
     }
 
     public Map<String, Double> getReturnOnEquity() {

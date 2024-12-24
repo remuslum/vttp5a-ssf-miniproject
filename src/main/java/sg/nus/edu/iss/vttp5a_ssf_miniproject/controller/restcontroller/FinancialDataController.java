@@ -10,7 +10,7 @@ import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.FinancialDataService;
 
 
 @RestController
-@RequestMapping("/news")
+@RequestMapping("/marketnews")
 public class FinancialDataController {
     @Autowired
     FinancialDataService financialDataService;

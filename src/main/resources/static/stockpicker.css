@@ -1,0 +1,32 @@
+#main-div {
+    background-image: url("/images/gray_stock_background.jpg.avif");
+}
+
+.question {
+    font-family: "Merriweather", serif;
+    font-weight: 400;
+    font-style: italic;
+    font-size: 8rem;
+}
+
+.form-select {
+    appearance: none;
+    text-align: center;
+    text-align-last: center;
+    font-family: "Source Sans 3", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.custom-button {
+    width:20%;
+}
+
+.custom-text {
+    text-align: center;
+    font-family: "Raleway", serif; 
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: italic;
+}

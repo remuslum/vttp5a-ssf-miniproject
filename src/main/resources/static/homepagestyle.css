@@ -54,7 +54,7 @@
     z-index:5;
 }
 
-#main-div #link-text {
+#main-div .link-text {
     text-decoration: none;
     font-family: "Raleway", serif;
     font-optical-sizing: auto;
@@ -63,27 +63,6 @@
     color: white;
 }
 
-#main-div #link-text:hover {
-    color: #000;
+#main-div .link-text:hover {
+    text-decoration: underline;
 }
-
-.nav-item a {
-    font-family: "Montserrat", serif;
-    font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: normal;
-}
-
-.nav-item .btn a{
-    text-decoration: none;
-    color: black;
-}
-
-.navbar-brand {
-    font-family: "Antonio", serif;
-    font-optical-sizing: auto;
-    font-weight: 700;
-    font-style: normal;
-    font-size: 2rem;
-}
-  

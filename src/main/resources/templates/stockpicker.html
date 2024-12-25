@@ -15,18 +15,17 @@
   </head>
   <body>
     <div class="d-flex flex-column justify-content-center align-items-center min-vh-100" id="main-div">
-        <form th:action="@{/company}" method="POST" class="text-center">
+        <form th:action="@{/picker}" method="POST" class="text-center">
             <label for="stockSymbol" class="mb-2">
-                <p class="question">Select a stock symbol</p>
+                <p class="question">Which stock would you like to see?</p>
             </label>
             <select name="stockSymbol" class="form-select mb-4 rounded-pill">
-                <option value="" disabled selected>Select a stock symbol</option>
+                <option value="" disabled selected>---- Select a stock symbol ----</option>
                 <option th:each="symbol : ${symbols}" th:text="${symbol.symbol}" th:value="${symbol.symbol}"></option>
             </select>
             <button class="btn btn-secondary btn-lg rounded-pill custom-button" type="submit">
                 <span class="custom-text">
-                    <i class="bi bi-check2-circle pe-2"></i>
-                    Select</span>
+                    <i class="bi bi-check2-circle pe-2"></i>Select</span>
             </button>
         </form>
     </div>

@@ -1,3 +1,8 @@
+.card {
+    width:20%;
+    text-align: center;
+}
+
 .card-body .card-title {
     font-family: "Inter", serif;
     font-optical-sizing: auto;
@@ -10,7 +15,7 @@
 .card-text {
     font-family: "Inter", serif;
     font-optical-sizing: auto;
-    font-weight: 600;
+    font-weight: 400;
     font-style: normal;
     font-size: 3rem;
 }

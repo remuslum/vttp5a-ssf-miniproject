@@ -16,19 +16,25 @@
   <body>
     <p th:text="${companyName}" class="dashboard-title"></p>
     <div class="d-flex justify-content-around" th:object="${companyFinancials}">
-        <div class="card">
+        <div class="card shadow-lg border-light">
             <div class="card-body">
                 <p class="card-title">52 Week High</p>
                 <span class="card-text" th:text="${companyFinancials.allTimeHigh}"></span> 
+                <p class="card-title">Occured on: 
+                    <span class="card-title" th:text="${companyFinancials.allTimeHighDate}"></span>
+                </p>
             </div>
         </div>
-        <div class="card">
+        <div class="card shadow-lg border-light">
             <div class="card-body">
                 <p class="card-title">52 Week Low</p>
                 <span class="card-text" th:text="${companyFinancials.allTimeLow}"></span> 
+                <p class="card-title">Occured on: 
+                    <span class="card-title" th:text="${companyFinancials.allTimeLowDate}"></span>
+                </p>
             </div>
         </div>
-        <div class="card">
+        <div class="card shadow-lg border-light">
             <div class="card-body">
                 <p class="card-title">Beta</p>
                 <span class="card-text" th:text="${companyFinancials.beta}"></span>

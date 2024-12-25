@@ -22,6 +22,9 @@ public class JSONParser {
     @Autowired
     LocalDateConverter localDateConverter;
 
+    @Autowired
+    DoubleFormatter doubleFormatter;
+
     public NewsArticle convertNewsJSONToNewsArticle(JsonObject jsonObject){
         LocalDate newsDate = localDateConverter.convert(jsonObject.getJsonNumber("datetime").longValue());
 
@@ -41,9 +44,9 @@ public class JSONParser {
         JsonObject metric = jsonObject.getJsonObject("metric");
         JsonObject quarterlyNumbers = jsonObject.getJsonObject("series").getJsonObject("quarterly");
 
-        return new CompanyFinancials(metric.getJsonNumber("52WeekHigh").doubleValue(), metric.getString("52WeekHighDate"),
-        metric.getJsonNumber("52WeekLow").doubleValue(), metric.getString("52WeekLowDate"), 
-        metric.getJsonNumber("beta").doubleValue(), getMetrics("currentRatio", quarterlyNumbers),
+        return new CompanyFinancials(doubleFormatter.convertTo2DecimalPlaces(metric.getJsonNumber("52WeekHigh").doubleValue()), metric.getString("52WeekHighDate"),
+        doubleFormatter.convertTo2DecimalPlaces(metric.getJsonNumber("52WeekLow").doubleValue()), metric.getString("52WeekLowDate"), 
+        doubleFormatter.convertTo2DecimalPlaces(metric.getJsonNumber("beta").doubleValue()), getMetrics("currentRatio", quarterlyNumbers),
         getMetrics("longtermDebtTotalEquity", quarterlyNumbers), getMetrics("testing", quarterlyNumbers));
     }
 

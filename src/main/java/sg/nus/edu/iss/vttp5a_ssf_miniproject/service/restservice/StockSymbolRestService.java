@@ -1,6 +1,9 @@
 package sg.nus.edu.iss.vttp5a_ssf_miniproject.service.restservice;
 
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,10 +30,15 @@ public class StockSymbolRestService {
     public boolean getStockSymbols(){
         String response = requestBuilder.getStockSymbols("US").getBody();
         JsonArray jsonArray = Json.createReader(new StringReader(response)).readArray();
+        Map<String, String> symbolsMap = stockSymbols.getTop10Symbols();
+        List<String> symbols = new ArrayList<>(symbolsMap.keySet());
+
         for(int i = 0; i < jsonArray.size(); i++){
             JsonObject jsonObject = jsonArray.getJsonObject(i);
-            if(stockSymbols.getTop10Symbols().contains(jsonObject.getString("symbol"))){
-                mapRepo.create(RedisConstants.REDISKEY, jsonObject.getString("symbol"), jsonObject.toString());
+            String symbolFromJSON = jsonObject.getString("symbol");
+            if(symbols.contains(symbolFromJSON)){
+                JsonObject finalJsonObject = Json.createObjectBuilder(jsonObject).add("image", symbolsMap.get(symbolFromJSON)).build();
+                mapRepo.create(RedisConstants.REDISKEY, jsonObject.getString("symbol"), finalJsonObject.toString());
             }
             
         }

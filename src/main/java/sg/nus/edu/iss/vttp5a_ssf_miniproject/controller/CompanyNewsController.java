@@ -1,13 +1,21 @@
 package sg.nus.edu.iss.vttp5a_ssf_miniproject.controller;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.CompanyFinancials;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.NewsArticle;
@@ -32,8 +40,39 @@ public class CompanyNewsController {
         mav.addObject("companyName", companySymbol);
         mav.addObject("companyFinancials", companyFinancials);
         mav.addObject("newsArticles", companyNews);
+
         mav.setViewName("companynews");
+        
         return mav;
+    }
+
+    @GetMapping("/bar")
+    public String barChart(Model model) throws JsonProcessingException{
+        CompanyFinancials companyFinancials = companyFinancialsService.getCompanyFinancials("AAPL");
+        Map<String, Double> currentRatio = companyFinancials.getCurrentRatio();
+
+        List<Map.Entry<String, Double>> sortedEntries = currentRatio.entrySet()
+            .stream()
+            .sorted(Map.Entry.comparingByKey())  // Sort by the String key
+            .collect(Collectors.toList());
+
+        // Rebuild a new LinkedHashMap to maintain the order
+        Map<String, Double> sortedMap = new LinkedHashMap<>();
+        for (Map.Entry<String, Double> entry : sortedEntries) {
+            sortedMap.put(entry.getKey(), entry.getValue());
+        }
+
+        List<String> period = new ArrayList<>(sortedMap.keySet());
+        List<Double> ratio = new ArrayList<>(sortedMap.values());
+
+        ObjectMapper mapper = new ObjectMapper();
+        String periodJson = mapper.writeValueAsString(period);
+        String ratioJson = mapper.writeValueAsString(ratio);
+
+        model.addAttribute("period", periodJson);
+        model.addAttribute("ratio",ratioJson);
+
+        return "barchart";
     }
 
     

@@ -13,8 +13,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <body>
     <p th:text="${companyName}" class="dashboard-title"></p>
+    
     <div class="d-flex justify-content-around" th:object="${companyFinancials}">
         <div class="card shadow-lg border-light">
             <div class="card-body">
@@ -40,6 +43,7 @@
                 <span class="card-text" th:text="${companyFinancials.beta}"></span>
             </div>
         </div>
+
         <!-- <div class="card">
             <ul class="list-group list-group-flush" th:each="entry: ${companyFinancials.currentRatio}">
                 <li class="list-group-item">

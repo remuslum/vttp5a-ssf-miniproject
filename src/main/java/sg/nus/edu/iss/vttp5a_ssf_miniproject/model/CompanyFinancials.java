@@ -24,6 +24,10 @@ public class CompanyFinancials {
         this.returnOnEquity = returnOnEquity;
     }
 
+    public CompanyFinancials() {
+        //TODO Auto-generated constructor stub
+    }
+
     public double getAllTimeHigh() {
         return allTimeHigh;
     }

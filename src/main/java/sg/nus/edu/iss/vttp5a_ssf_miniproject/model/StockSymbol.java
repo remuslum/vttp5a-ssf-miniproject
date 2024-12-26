@@ -4,11 +4,14 @@ public class StockSymbol {
     private String symbol;
     private String description;
     private String type;
+    private String image;
     
-    public StockSymbol(String symbol, String description, String type) {
+    
+    public StockSymbol(String symbol, String description, String type, String image) {
         this.symbol = symbol;
         this.description = description;
         this.type = type;
+        this.image = image;
     }
     public String getSymbol() {
         return symbol;
@@ -27,6 +30,12 @@ public class StockSymbol {
     }
     public void setType(String type) {
         this.type = type;
+    }
+    public String getImage() {
+        return image;
+    }
+    public void setImage(String image) {
+        this.image = image;
     }
 
     

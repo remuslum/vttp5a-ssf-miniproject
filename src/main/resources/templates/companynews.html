@@ -18,7 +18,10 @@
     </head>
 
     <body>
-        <p th:text="${companyName}" class="dashboard-title"></p>
+        <div class="d-flex">
+            <p class="dashboard-title" th:text="${company.symbol}"></p>
+            <img th:src="${company.image}">
+        </div>
         
         <div class="d-flex justify-content-around" th:object="${companyFinancials}">
             <div class="card shadow-lg border-light">

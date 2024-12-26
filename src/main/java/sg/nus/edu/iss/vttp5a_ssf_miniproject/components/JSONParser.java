@@ -31,7 +31,8 @@ public class JSONParser {
 
     public StockSymbol convertJSONStringToStockSymbol(String JSONString){
         JsonObject jsonObject = Json.createReader(new StringReader(JSONString)).readObject();
-        return new StockSymbol(jsonObject.getString("symbol"), jsonObject.getString("description"), jsonObject.getString("type"));
+        return new StockSymbol(jsonObject.getString("symbol"), jsonObject.getString("description"),
+        jsonObject.getString("type"), jsonObject.getString("image"));
     }
 
      

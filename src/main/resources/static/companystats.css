@@ -39,7 +39,7 @@
 /* Styling for individual bars */
 .bar {
     width: 25%; /* Adjust bar width for clustering, smaller width for multiple bars per group */
-    background-color: rgba(75, 192, 192, 0.7); /* Color for bars */
+    background-color: rgb(78, 115, 223); /* Color for bars */
     border: 1px solid #333;
     position: relative;
 }

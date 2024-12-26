@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSONParser;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSONParserFinancials;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.RequestBuilder;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.CompanyFinancials;
 
@@ -14,10 +14,10 @@ public class CompanyFinancialsService {
     RequestBuilder requestBuilder;
 
     @Autowired
-    JSONParser jsonParser;
+    JSONParserFinancials jsonParserFinancials;
 
     public CompanyFinancials getCompanyFinancials(String symbol){
         ResponseEntity<String> response = requestBuilder.getCompanyFinancials(symbol);
-        return jsonParser.extractMetricsFromJSON(response.getBody());
+        return jsonParserFinancials.extractMetricsFromJSON(response.getBody());
     }
 }

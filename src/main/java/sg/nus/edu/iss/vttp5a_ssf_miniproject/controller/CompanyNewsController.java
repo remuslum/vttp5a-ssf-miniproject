@@ -36,10 +36,11 @@ public class CompanyNewsController {
         ModelAndView mav = new ModelAndView();
         List<NewsArticle> companyNews = companyNewsService.getCompanyNews(companySymbol);
         CompanyFinancials companyFinancials = companyFinancialsService.getCompanyFinancials(companySymbol);
-
+        
         mav.addObject("companyName", companySymbol);
         mav.addObject("companyFinancials", companyFinancials);
         mav.addObject("newsArticles", companyNews);
+
 
         mav.setViewName("companynews");
         

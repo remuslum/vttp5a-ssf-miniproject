@@ -29,7 +29,7 @@ public class StockSymbolRestService {
         JsonArray jsonArray = Json.createReader(new StringReader(response)).readArray();
         for(int i = 0; i < jsonArray.size(); i++){
             JsonObject jsonObject = jsonArray.getJsonObject(i);
-            if(stockSymbols.getTop20Symbols().contains(jsonObject.getString("symbol"))){
+            if(stockSymbols.getTop10Symbols().contains(jsonObject.getString("symbol"))){
                 mapRepo.create(RedisConstants.REDISKEY, jsonObject.getString("symbol"), jsonObject.toString());
             }
             

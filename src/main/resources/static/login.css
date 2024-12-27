@@ -1,0 +1,74 @@
+body{
+    position: relative;
+    width: 100%; /* Full width */
+    height: 100vh;
+    background-image: url("/images/login_background.jpg"); /* Replace with your image URL */
+    background-size: cover; /* Scale image to cover the entire div */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* No tiling of the image */
+}
+
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.25);
+    z-index: 0;
+}
+
+body * {
+    z-index: 10;
+}
+
+.bi {
+    color: white;
+}
+
+.bi-currency-exchange {
+    font-size: 10rem;
+}
+
+.bi-people-fill {
+    font-size: 6rem;
+}
+
+.title {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-size: 8rem;
+    font-style: normal;
+    color:white;
+    z-index:5;
+}
+
+.subtitle {
+    text-align: center;
+    font-family: "Open Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    font-size: 1.5rem;
+    color: white;
+    z-index:5;
+}
+
+.form-label {
+    font-family: "Open Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    font-size: 1rem;
+    color: white;
+    z-index:5;
+}
+
+.hover-black:hover {
+    color: black;
+}

@@ -17,9 +17,6 @@ public class JSONParser {
     @Autowired
     LocalDateConverter localDateConverter;
 
-    
-
-
     public NewsArticle convertNewsJSONToNewsArticle(JsonObject jsonObject){
         LocalDate newsDate = localDateConverter.convert(jsonObject.getJsonNumber("datetime").longValue());
 

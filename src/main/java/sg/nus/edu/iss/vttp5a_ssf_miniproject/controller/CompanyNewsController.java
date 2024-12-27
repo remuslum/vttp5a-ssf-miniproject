@@ -20,9 +20,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.CompanyFinancials;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.NewsArticle;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.StockSymbol;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.CompanyFinancialsService;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.CompanyNewsService;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.StockSymbolService;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.restservice.CompanyFinancialsService;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.RedisConstants;
 
 @Controller
@@ -42,6 +42,7 @@ public class CompanyNewsController {
         ModelAndView mav = new ModelAndView();
         List<NewsArticle> companyNews = companyNewsService.getCompanyNews(companySymbol);
         CompanyFinancials companyFinancials = companyFinancialsService.getCompanyFinancials(companySymbol);
+        Map<String, String> fScores = companyFinancialsService.getFScore(companyFinancials);
 
         StockSymbol currentCompany = stockSymbolService.getStockSymbolsFromRedis(RedisConstants.REDISKEY).stream()
         .filter(s -> s.getSymbol().equals(companySymbol)).findFirst().get();
@@ -50,6 +51,7 @@ public class CompanyNewsController {
         mav.addObject("companyName", companySymbol);
         mav.addObject("companyFinancials", companyFinancials);
         mav.addObject("newsArticles", companyNews);
+        mav.addObject("fScores", fScores);
 
         mav.setViewName("companynews");
         

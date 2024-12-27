@@ -10,10 +10,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LocalDateConverter {
-    public LocalDateConverter(){
-
-    }
-
     public LocalDate convert(long epoch){
         return Instant.ofEpochSecond(epoch).atZone(ZoneId.of("UTC")).toLocalDate();
     }
@@ -24,5 +20,10 @@ public class LocalDateConverter {
         ZoneId zoneId = ZoneId.of("UTC");
         long epochMilli = localDateTime.atZone(zoneId).toInstant().toEpochMilli();
         return epochMilli;
+    }
+
+    public String extractYearFromDate(String date){
+        LocalDate localDate = LocalDate.parse(date);
+        return String.valueOf(localDate.getYear());
     }
 }

@@ -4,6 +4,7 @@ import java.io.StringReader;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -12,28 +13,31 @@ import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.CompanyFinancials;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.QuarterlyMetrics;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.AnnualMetrics;
 
 @Component
 public class JSONParserFinancials {
     @Autowired
     DoubleFormatter doubleFormatter;
 
+    @Autowired
+    LocalDateConverter localDateConverter;
+
     public CompanyFinancials extractMetricsFromJSON(String JSONString){
         JsonObject jsonObject = Json.createReader(new StringReader(JSONString)).readObject();
         JsonObject metric = jsonObject.getJsonObject("metric");
-        JsonObject quarterlyNumbers = jsonObject.getJsonObject("series").getJsonObject("quarterly");
+        JsonObject annualNumbers = jsonObject.getJsonObject("series").getJsonObject("annual");
         
-        Map<String, Map<String, Double>> quarterlyMetrics = new HashMap<>();
-        for(String metricName:QuarterlyMetrics.getMetricsName()){
-            quarterlyMetrics.put(metricName, getMetrics(metricName, quarterlyNumbers));
+        Map<String, Map<String, Double>> annualMetrics = new HashMap<>();
+        for(String metricName:AnnualMetrics.getMetricsName()){
+            annualMetrics.put(metricName, getMetrics(metricName, annualNumbers));
         }
 
         return new CompanyFinancials(doubleFormatter.convertTo2DecimalPlaces(metric.getJsonNumber("52WeekHigh").doubleValue()), metric.getString("52WeekHighDate"),
         doubleFormatter.convertTo2DecimalPlaces(metric.getJsonNumber("52WeekLow").doubleValue()), metric.getString("52WeekLowDate"), 
-        doubleFormatter.convertTo2DecimalPlaces(metric.getJsonNumber("beta").doubleValue()), quarterlyMetrics.get("peTTM"),
-        quarterlyMetrics.get("pb"), quarterlyMetrics.get("currentRatio"), quarterlyMetrics.get("cashRatio"), quarterlyMetrics.get("eps"),
-        quarterlyMetrics.get("roeTTM"),quarterlyMetrics.get("netDebtToTotalEquity"),quarterlyMetrics.get("netDebtToTotalCapital"));
+        doubleFormatter.convertTo2DecimalPlaces(metric.getJsonNumber("beta").doubleValue()), annualMetrics.get("ebitPerShare"),
+        annualMetrics.get("fcfMargin"), annualMetrics.get("roa"), annualMetrics.get("longtermDebtTotalAsset"), annualMetrics.get("currentRatio"),
+        annualMetrics.get("grossMargin"),annualMetrics.get("inventoryTurnover"));
     }
 
     private Map<String, Double> getMetrics(String metricName, JsonObject jsonObject){
@@ -48,10 +52,14 @@ public class JSONParserFinancials {
     }
 
     private Map<String, Double> getMap(JsonArray jsonArray){
-        Map<String, Double> metricMap = new HashMap<>();
-        for(int i = 0; i < 4; i++){
+        Map<String, Double> metricMap = new TreeMap<>();
+        // Extract info from past 5 years or all the info, depending on what is smaller to prevent ArrayOutOfBounds exception
+        int lengthNeeded = Math.min(jsonArray.size(), 5);
+        
+        for(int i = 0; i < lengthNeeded; i++){
             JsonObject object = jsonArray.getJsonObject(i);
-            metricMap.put(object.getString("period"), object.getJsonNumber("v").doubleValue());
+            String yearOfPeriod = localDateConverter.extractYearFromDate(object.getString("period"));
+            metricMap.put(yearOfPeriod, object.getJsonNumber("v").doubleValue());
         }
         return metricMap;
     }

@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.restservice.CompanyFinancialsService;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.CompanyFinancialsService;
 
 @RestController
 @RequestMapping("/financials")

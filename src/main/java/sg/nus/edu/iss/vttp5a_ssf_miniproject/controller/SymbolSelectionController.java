@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,7 +33,13 @@ public class SymbolSelectionController {
     }
 
     @PostMapping
-    public String getCompanySymbol(@RequestParam("stockSymbol") String stockSymbol){
+    public String getCompanySymbol(@RequestParam(name = "stockSymbol", defaultValue = "") String stockSymbol, Model model){
+        if(stockSymbol.isEmpty()){
+            List<StockSymbol> stockSymbols = stockSymbolService.getStockSymbolsFromRedis(RedisConstants.REDISKEY);
+            model.addAttribute("symbols", stockSymbols);
+            model.addAttribute("errorMessage", "Please select a stock symbol");
+            return "stockpicker";
+        }
         return "redirect:/company/" + stockSymbol;
 
     }

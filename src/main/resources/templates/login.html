@@ -33,14 +33,17 @@
                           <span class="input-group-text bg-transparent border-0">
                             <i class="bi bi-person-circle"></i></span>
                         </div>
-                        <input type="text" class="form-control bg-secondary-subtle rounded-pill" placeholder="Username">
+                        <input type="text" class="form-control bg-secondary-subtle rounded-pill" placeholder="Email Address" name="email">
                       </div>
                       <div class="input-group mb-3">
                         <div class="input-group-prepend">
                           <span class="input-group-text bg-transparent border-0">
                             <i class="bi bi-key-fill"></i></span>
                         </div>
-                        <input type="password" class="form-control bg-secondary-subtle rounded-pill" placeholder="Password">
+                        <input type="password" class="form-control bg-secondary-subtle rounded-pill" placeholder="Password" name="password">
+                      </div>
+                      <div class="p-2 mt-2 mb-2 text-center" th:if="${!isValidUser}">
+                        <p class="text-danger">This email is not yet registered with us</p>
                       </div>
                       <div class="p-3 mt-2  d-flex flex-column justify-content-center align-items-center">
                         <button class="btn btn-secondary hover-black w-25" type="submit">Login</button>

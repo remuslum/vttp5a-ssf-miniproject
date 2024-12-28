@@ -1,5 +1,8 @@
 package sg.nus.edu.iss.vttp5a_ssf_miniproject.components;
 
+import java.io.StringReader;
+import java.time.LocalDate;
+
 import org.springframework.stereotype.Component;
 
 import jakarta.json.Json;
@@ -15,5 +18,11 @@ public class JSONParserUser {
         .add("email", user.getEmail()).add("password", user.getPassword()).build();
 
         return userJsonObject.toString();
+    }
+
+    public User convertJSONToUser(String jsonString){
+        JsonObject jsonObject = Json.createReader(new StringReader(jsonString)).readObject();
+        return new User(jsonObject.getString("firstName"), jsonObject.getString("lastName"), 
+        LocalDate.parse(jsonObject.getString("dateOfBirth")), jsonObject.getString("email"), jsonObject.getString("password"));
     }
 }

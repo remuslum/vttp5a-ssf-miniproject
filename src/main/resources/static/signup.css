@@ -1,0 +1,38 @@
+body{
+    position: relative;
+    width: 100%; /* Full width */
+    height: 100vh;
+    background-image: url("/images/signup_background.jpg.avif"); /* Replace with your image URL */
+    background-size: cover; /* Scale image to cover the entire div */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* No tiling of the image */
+}
+
+body * {
+    z-index: 10;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    color: red;
+}
+
+.title {
+    text-align: center;
+    font-family: "Poppins", serif;
+    font-size: 4rem;
+    font-style: normal;
+    z-index:5;
+}
+
+.bi-person-fill { 
+    font-size: 3rem;
+}
+
+.btn:hover {
+    color: black;
+}

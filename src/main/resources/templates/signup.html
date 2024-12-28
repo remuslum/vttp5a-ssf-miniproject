@@ -22,21 +22,38 @@
                 </div>
                 <h1>Sign Up</h1>
             </div>
-            <form method="POST" th:action="@{/signup}">
-                <label for="firstName" class="form-label p-2 mx-auto">First Name</label>
-                <input type="text" class="form-control p-2 mx-auto mb-3" placeholder="First Name" name="firstName">
+            <form method="POST" th:action="@{/signup}" th:object="${user}">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label p-2 mx-auto">First Name</label>
+                    <input type="text" class="form-control p-2 mx-auto" placeholder="First Name" name="firstName" th.field="*{firstName}">
+                </div>
+                <div class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></div>
 
-                <label for="firstName" class="form-label p-2 mx-auto">Last Name</label>
-                <input type="text" class="form-control p-2 mx-auto mb-3" placeholder="Last Name" name="lastName">
-
-                <label for="firstName" class="form-label p-2 mx-auto">Date of Birth</label>
-                <input type="date" class="form-control p-2 mx-auto mb-3" placeholder="Date of Birth" name="dateOfBirth">
-
-                <label for="firstName" class="form-label p-2 mx-auto">Email</label>
-                <input type="email" class="form-control p-2 mx-auto mb-3" placeholder="Email" name="email">
-
-                <label for="firstName" class="form-label p-2 mx-auto">Password</label>
-                <input type="password" class="form-control p-2 mx-auto mb-3" placeholder="Password" name="password">
+                <div class="mb-3">
+                    <label for="firstName" class="form-label p-2 mx-auto">Last Name</label>
+                    <input type="text" class="form-control p-2 mx-auto mb-3" placeholder="Last Name" name="lastName" th:field="*{lastName}">
+                </div>
+                <div class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></div>
+                
+                <div class="mb-3">
+                    <label for="firstName" class="form-label p-2 mx-auto">Date of Birth</label>
+                    <input type="date" class="form-control p-2 mx-auto mb-3" placeholder="Date of Birth" name="dateOfBirth" th:field="*{dateOfBirth}">
+                </div>
+                <div class="text-danger" th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}"></div>
+                
+                <div class="mb-3"> 
+                    <label for="firstName" class="form-label p-2 mx-auto">Email</label>
+                    <input type="email" class="form-control p-2 mx-auto mb-3" placeholder="Email" name="email" th:field="*{email}">
+                </div>
+                <div class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
+                
+                <div class="mb-3">
+                    <label for="firstName" class="form-label p-2 mx-auto">Password</label>
+                    <input type="password" class="form-control p-2 mx-auto mb-3" placeholder="Password" name="password" th:field="*{password}">
+                </div>
+                <div class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                
+                <div class="mt-2 mb-3 text-danger" th:if="${checkUserExist}">Email address is already registered</div>
                 <div class="d-flex justify-content-center align-items-center">
                     <button class="btn btn-secondary mt-2" type="submit">Register</button>
                 </div>

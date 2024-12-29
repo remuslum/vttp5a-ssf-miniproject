@@ -2,6 +2,7 @@ package sg.nus.edu.iss.vttp5a_ssf_miniproject.service;
 
 import java.io.StringReader;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,10 +43,11 @@ public class FinancialDataService {
 
     public List<NewsArticle> getLatestNewsArticles(){
         List<NewsArticle> newsArticles = getNewsArticleList();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, dd MMM yyyy");
 
         // return latest news up till 2 days ago
         return newsArticles.stream().
-        filter(article -> ChronoUnit.DAYS.between(article.getDatetime(), LocalDate.now()) < 3)
+        filter(article -> ChronoUnit.DAYS.between(LocalDate.parse(article.getDatetime(), formatter), LocalDate.now()) < 3)
         .collect(Collectors.toList());
     }
 }

@@ -1,10 +1,8 @@
 package sg.nus.edu.iss.vttp5a_ssf_miniproject.model;
 
-import java.time.LocalDate;
-
 public class NewsArticle {
     private String category;
-    private LocalDate datetime;
+    private String datetime;
     private String headline;
     private Integer id;
     private String image;
@@ -13,7 +11,7 @@ public class NewsArticle {
     private String summary;
     private String url;
 
-    public NewsArticle(String category, LocalDate datetime, String headline, Integer id, String image, String related,
+    public NewsArticle(String category, String datetime, String headline, Integer id, String image, String related,
             String source, String summary, String url) {
         this.category = category;
         this.datetime = datetime;
@@ -34,11 +32,11 @@ public class NewsArticle {
         this.category = category;
     }
 
-    public LocalDate getDatetime() {
+    public String getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(LocalDate datetime) {
+    public void setDatetime(String datetime) {
         this.datetime = datetime;
     }
 

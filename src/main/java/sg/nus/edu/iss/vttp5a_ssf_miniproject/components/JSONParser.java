@@ -19,8 +19,9 @@ public class JSONParser {
 
     public NewsArticle convertNewsJSONToNewsArticle(JsonObject jsonObject){
         LocalDate newsDate = localDateConverter.convert(jsonObject.getJsonNumber("datetime").longValue());
+        String newsDateConverted = localDateConverter.convertDateFormatWithDayOfWeek(newsDate);
 
-        return new NewsArticle(jsonObject.getString("category"), newsDate, jsonObject.getString("headline")
+        return new NewsArticle(jsonObject.getString("category"), newsDateConverted, jsonObject.getString("headline")
         , jsonObject.getInt("id"), jsonObject.getString("image"), jsonObject.getString("related")
         , jsonObject.getString("source"), jsonObject.getString("summary"), jsonObject.getString("url"));
         

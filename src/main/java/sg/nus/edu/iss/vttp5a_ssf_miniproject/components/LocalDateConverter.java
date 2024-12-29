@@ -26,4 +26,9 @@ public class LocalDateConverter {
         LocalDate localDate = LocalDate.parse(date);
         return String.valueOf(localDate.getYear());
     }
+
+    public String convertDateFormatWithDayOfWeek(LocalDate localDate){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("E, dd MMM yyyy");
+        return localDate.format(formatter);
+    }
 }

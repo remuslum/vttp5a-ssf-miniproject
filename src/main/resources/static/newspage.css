@@ -1,3 +1,17 @@
+body{
+    position: relative;
+    width: 100%; /* Full width */
+    min-height: 100%;
+    background-image: url("/images/news_background.jpg.avif"); /* Replace with your image URL */
+    background-size: cover; /* Scale image to cover the entire div */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* No tiling of the image */
+}
+
+body * {
+    z-index: 10;
+}
+
 .summary {
     font-family: "Raleway", serif;
     font-optical-sizing: auto;
@@ -5,6 +19,22 @@
     font-style: italic;
 }
 
+.title {
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+}
+
 a {
-    text-decoration: none;
+    font-family: "Open Sans", serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+    color:gray;
+}
+
+a:hover {
+    color:blue;
 }

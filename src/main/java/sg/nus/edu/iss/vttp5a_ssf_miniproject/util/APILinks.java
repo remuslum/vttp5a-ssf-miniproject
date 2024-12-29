@@ -6,4 +6,5 @@ public class APILinks {
     public static final String STOCKSYMBOLS = "/stock/symbol";
     public static final String COMPANYNEWS = "/company-news";
     public static final String COMPANYFINANCIALS = "/stock/metric";
+    public static final String INSIDERINFORMATION = "/stock/insider-transactions";
 }

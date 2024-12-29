@@ -18,6 +18,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.CompanyFinancials;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.InsideInformation;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.NewsArticle;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.StockSymbol;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.CompanyFinancialsService;
@@ -43,6 +44,7 @@ public class CompanyNewsController {
         List<NewsArticle> companyNews = companyNewsService.getCompanyNews(companySymbol);
         CompanyFinancials companyFinancials = companyFinancialsService.getCompanyFinancials(companySymbol);
         Map<String, String> fScores = companyFinancialsService.getFScore(companyFinancials);
+        List<InsideInformation> insiders = companyNewsService.getInsideInformation(companySymbol);
 
         StockSymbol currentCompany = stockSymbolService.getStockSymbolsFromRedis(RedisConstants.REDISKEY).stream()
         .filter(s -> s.getSymbol().equals(companySymbol)).findFirst().get();
@@ -52,6 +54,7 @@ public class CompanyNewsController {
         mav.addObject("companyFinancials", companyFinancials);
         mav.addObject("newsArticles", companyNews);
         mav.addObject("fScores", fScores);
+        mav.addObject("insiders",insiders);
 
         mav.setViewName("companynews");
         

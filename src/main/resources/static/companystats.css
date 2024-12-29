@@ -36,6 +36,8 @@
 #logo {
     margin: 0;
     display: block;
+    width: 5%;
+    height: 5%;
 }
 
 .table-text:hover {

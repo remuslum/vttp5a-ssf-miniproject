@@ -43,9 +43,18 @@ public class RequestBuilder {
         return sendUrlGetRequest(url);
     }
 
+    public ResponseEntity<String> getInsideInformation(String symbol){
+        String url = UriComponentsBuilder.fromUriString(APILinks.API_LINK + APILinks.INSIDERINFORMATION)
+        .queryParam("token", apiKey).queryParam("symbol", symbol).toUriString();
+
+        return sendUrlGetRequest(url);
+    }
+
     private ResponseEntity<String> sendUrlGetRequest(String url){
         RequestEntity<Void> request = RequestEntity.get(url).build();
         RestTemplate restTemplate = new RestTemplate();
         return restTemplate.exchange(request, String.class);
     }
+
+
 }

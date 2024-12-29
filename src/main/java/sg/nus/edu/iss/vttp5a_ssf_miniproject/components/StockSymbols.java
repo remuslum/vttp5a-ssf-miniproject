@@ -21,7 +21,7 @@ public class StockSymbols {
         top10symbols.put("GE",pathToImages + "/General_Electric_logo.svg.png");
         top10symbols.put("IBM",pathToImages + "/IBM_logo.svg.png");
         top10symbols.put("JNJ",pathToImages + "/jnj_logo.png");
-        top10symbols.put("PG",pathToImages + "/Procter_&_Gamble_logo.png");
+        top10symbols.put("PG",pathToImages + "/Procter_&_Gamble_logo.svg.png");
 
         return top10symbols;
     }

@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.PasswordManager;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.password.PasswordManager;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.User;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.SignUpService;
 

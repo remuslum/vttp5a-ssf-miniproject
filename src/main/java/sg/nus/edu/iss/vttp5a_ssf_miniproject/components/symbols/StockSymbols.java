@@ -1,4 +1,4 @@
-package sg.nus.edu.iss.vttp5a_ssf_miniproject.components;
+package sg.nus.edu.iss.vttp5a_ssf_miniproject.components.symbols;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,7 +14,7 @@ public class StockSymbols {
         
         top10symbols.put("NVDA",pathToImages + "/nvidia_logo.png");
         top10symbols.put("AAPL",pathToImages + "/apple_logo.png");
-        top10symbols.put("MSFT",pathToImages + "microsoft_logo.jpg");
+        top10symbols.put("MSFT",pathToImages + "/microsoft_logo.jpg");
         top10symbols.put("GOOGL",pathToImages + "/google_logo.png");
         top10symbols.put("AMZN",pathToImages + "/amazon_logo.jpg");
         top10symbols.put("XOM",pathToImages + "/Exxon_Mobil_Logo.svg.png");

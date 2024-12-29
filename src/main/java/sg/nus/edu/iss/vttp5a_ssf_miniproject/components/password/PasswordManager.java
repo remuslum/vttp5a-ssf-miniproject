@@ -1,4 +1,4 @@
-package sg.nus.edu.iss.vttp5a_ssf_miniproject.components;
+package sg.nus.edu.iss.vttp5a_ssf_miniproject.components.password;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Component;

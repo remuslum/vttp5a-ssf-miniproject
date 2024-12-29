@@ -11,7 +11,7 @@
     position: relative;
     width: 100%; /* Full width */
     height: 100vh;
-    background-image: url("/images/homepage_background.jpeg"); /* Replace with your image URL */
+    background-image: url("../images/homepage_background.jpeg"); /* Replace with your image URL */
     background-size: cover; /* Scale image to cover the entire div */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* No tiling of the image */

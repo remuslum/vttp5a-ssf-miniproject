@@ -1,4 +1,4 @@
-package sg.nus.edu.iss.vttp5a_ssf_miniproject.components;
+package sg.nus.edu.iss.vttp5a_ssf_miniproject.components.calculator;
 
 import java.util.Map;
 import java.util.Optional;
@@ -22,11 +22,16 @@ public class FScoreCalculator {
     private int isEarningsJustified(CompanyFinancials companyFinancials, String year){
         Map<String, Double> ebitPerShare = companyFinancials.getEbitPerShare();
         Map<String, Double> fcfMargin = companyFinancials.getFcfMargin();
-        return Boolean.compare(fcfMargin.get(year) > ebitPerShare.get(year), false);
+
+        Double ebitValue = Optional.ofNullable(ebitPerShare.get(year)).orElse(0.00);
+        Double fcfValue = Optional.ofNullable(fcfMargin.get(year)).orElse(0.00);
+        return Boolean.compare(fcfValue > ebitValue, false);
     }
 
     private int isMetricPositive(Map<String, Double> metric, String year){
-        return Boolean.compare(metric.get(year) > 0.00, false);
+        Optional<Double> value = Optional.ofNullable(metric.get(year));
+        int result = value.map(x -> Boolean.compare(x > 0.00, false)).orElse(0);
+        return result;
     }
 
     private int isThereADrop(Map<String, Double> metric, String year){

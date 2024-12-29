@@ -2,7 +2,7 @@ body{
     position: relative;
     width: 100%; /* Full width */
     min-height: 100%;
-    background-image: url("/images/news_background.jpg.avif"); /* Replace with your image URL */
+    background-image: url("../images/news_background.jpg.avif"); /* Replace with your image URL */
     background-size: cover; /* Scale image to cover the entire div */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* No tiling of the image */

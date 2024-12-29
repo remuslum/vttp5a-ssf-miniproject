@@ -1,4 +1,4 @@
-package sg.nus.edu.iss.vttp5a_ssf_miniproject.components;
+package sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSON;
 
 
 import java.io.StringReader;
@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 import jakarta.json.Json;
 import jakarta.json.JsonObject;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.converter.LocalDateConverter;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.NewsArticle;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.StockSymbol;
 

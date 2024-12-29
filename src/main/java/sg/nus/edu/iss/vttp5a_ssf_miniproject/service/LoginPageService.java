@@ -3,8 +3,8 @@ package sg.nus.edu.iss.vttp5a_ssf_miniproject.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSONParserUser;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.PasswordManager;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSON.JSONParserUser;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.password.PasswordManager;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.User;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.repo.MapRepo;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.RedisConstants;

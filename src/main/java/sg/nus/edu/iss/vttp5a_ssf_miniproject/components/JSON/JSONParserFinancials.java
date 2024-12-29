@@ -1,4 +1,4 @@
-package sg.nus.edu.iss.vttp5a_ssf_miniproject.components;
+package sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSON;
 
 import java.io.StringReader;
 import java.util.HashMap;
@@ -12,6 +12,8 @@ import org.springframework.stereotype.Component;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.converter.DoubleFormatter;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.converter.LocalDateConverter;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.CompanyFinancials;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.AnnualMetrics;
 

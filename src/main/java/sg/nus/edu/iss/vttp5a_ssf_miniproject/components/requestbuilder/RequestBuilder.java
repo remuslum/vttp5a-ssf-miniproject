@@ -1,4 +1,4 @@
-package sg.nus.edu.iss.vttp5a_ssf_miniproject.components;
+package sg.nus.edu.iss.vttp5a_ssf_miniproject.components.requestbuilder;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.RequestEntity;

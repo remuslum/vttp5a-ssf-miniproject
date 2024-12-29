@@ -11,8 +11,8 @@ import org.springframework.stereotype.Service;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.RequestBuilder;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.StockSymbols;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.requestbuilder.RequestBuilder;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.symbols.StockSymbols;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.repo.MapRepo;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.RedisConstants;
 

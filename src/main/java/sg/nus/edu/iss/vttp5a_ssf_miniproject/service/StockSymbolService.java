@@ -8,7 +8,7 @@ import java.util.Map.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSONParser;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSON.JSONParser;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.StockSymbol;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.repo.MapRepo;
 

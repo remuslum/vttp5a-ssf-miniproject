@@ -14,9 +14,9 @@ import org.springframework.stereotype.Service;
 import jakarta.json.Json;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonObject;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSONParser;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSONParserInsideInformation;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.RequestBuilder;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSON.JSONParser;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSON.JSONParserInsideInformation;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.requestbuilder.RequestBuilder;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.InsideInformation;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.NewsArticle;
 

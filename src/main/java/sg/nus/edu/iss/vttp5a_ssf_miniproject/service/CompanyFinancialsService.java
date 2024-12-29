@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.FScoreCalculator;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSONParserFinancials;
-import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.RequestBuilder;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.JSON.JSONParserFinancials;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.calculator.FScoreCalculator;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.components.requestbuilder.RequestBuilder;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.CompanyFinancials;
 
 @Service

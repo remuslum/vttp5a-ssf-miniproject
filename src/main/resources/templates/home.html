@@ -26,8 +26,8 @@
   <body>
       <div class="d-flex flex-column justify-content-center align-items-center" id="main-div">
         <div class="d-flex flex-column justify-content-center align-items-center" id="sub-div">
-            <p class="title">FinanceHub</p>
-            <p class="subtitle">Get all you need to know before making that investment </p>
+            <p class="title">Welcome, <span class="title" th:text="${user.firstName}"></span></p>
+            
             <div class="d-flex justify-content-center align-items-center">
               <button class="btn btn-outline-secondary btn-lg mx-3">
                 <a th:href="@{/picker}" class="link-text">

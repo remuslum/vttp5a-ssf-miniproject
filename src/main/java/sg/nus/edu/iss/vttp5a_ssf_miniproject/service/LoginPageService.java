@@ -22,10 +22,14 @@ public class LoginPageService {
 
     public boolean isValidUser(String email, String password){
         if (mapRepo.keyExists(RedisConstants.REDISUSERSKEY, email)){
-            User user = jsonParserUser.convertJSONToUser(mapRepo.get(RedisConstants.REDISUSERSKEY, email));
+            User user = getUser(email);
             return passwordManager.checkPassword(password, user.getPassword());
         }
         return false;
+    }
+
+    public User getUser(String email){
+        return jsonParserUser.convertJSONToUser(mapRepo.get(RedisConstants.REDISUSERSKEY, email));
     }
 
 }

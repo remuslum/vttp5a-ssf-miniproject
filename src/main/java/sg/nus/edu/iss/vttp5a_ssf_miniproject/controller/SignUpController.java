@@ -54,8 +54,7 @@ public class SignUpController {
                 String hashedPassword = passwordManager.hashPassword(user.getPassword());
                 User newUser = new User(user.getFirstName(), user.getLastName(), user.getDateOfBirth(), user.getEmail(), hashedPassword);
                 signUpService.addUser(newUser);
-                httpSession.setAttribute("user", newUser);
-                mav.setViewName("home");
+                mav.setViewName("redirect:/login");
             }
             
         }

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.servlet.http.HttpSession;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.User;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.LoginPageService;
 
 @Controller
@@ -19,8 +20,11 @@ public class LoginPageController {
     LoginPageService loginPageService;
     
     @GetMapping({"/","/login"})
-    public String getLoginPage(){
-        return "login";
+    public ModelAndView getLoginPage(){
+        ModelAndView mav = new ModelAndView();
+        mav.addObject("isValidUser", true);
+        mav.setViewName("login");
+        return mav;
     }
 
     @PostMapping("/login")
@@ -31,7 +35,9 @@ public class LoginPageController {
         String password = params.getFirst("password");
         boolean isValidUser = loginPageService.isValidUser(email, password);
         if (isValidUser){
-            mav.setViewName("home");
+            User user = loginPageService.getUser(email);
+            httpSession.setAttribute("user", user);
+            mav.setViewName("redirect:/home");
         } else {
             mav.setViewName("login");
         }

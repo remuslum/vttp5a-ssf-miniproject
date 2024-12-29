@@ -1,6 +1,7 @@
 package sg.nus.edu.iss.vttp5a_ssf_miniproject.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.servlet.http.HttpSession;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.StockSymbol;
+import sg.nus.edu.iss.vttp5a_ssf_miniproject.model.User;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.service.StockSymbolService;
 import sg.nus.edu.iss.vttp5a_ssf_miniproject.util.RedisConstants;
 
@@ -23,11 +26,18 @@ public class SymbolSelectionController {
     StockSymbolService stockSymbolService;
 
     @GetMapping
-    public ModelAndView displayStockSymbolsInDropdown(){
+    public ModelAndView displayStockSymbolsInDropdown(HttpSession httpSession){
         ModelAndView mav = new ModelAndView();
-        List<StockSymbol> stockSymbols = stockSymbolService.getStockSymbolsFromRedis(RedisConstants.REDISKEY);
-        mav.addObject("symbols", stockSymbols);
-        mav.setViewName("stockpicker");
+        Optional<User> user = Optional.ofNullable((User)httpSession.getAttribute("user"));
+        user.ifPresentOrElse((value) -> {
+            List<StockSymbol> stockSymbols = stockSymbolService.getStockSymbolsFromRedis(RedisConstants.REDISKEY);
+            mav.addObject("symbols", stockSymbols);
+            mav.setViewName("stockpicker");
+            }, 
+            () -> {
+                mav.setViewName("error");
+            });
+        
         return mav;
 
     }

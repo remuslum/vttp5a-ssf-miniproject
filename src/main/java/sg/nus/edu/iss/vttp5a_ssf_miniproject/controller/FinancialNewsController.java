@@ -21,8 +21,10 @@ public class FinancialNewsController {
     public ModelAndView displayFinancialNews(){
         ModelAndView mav = new ModelAndView();
         List<NewsArticle> news = financialDataService.getLatestNewsArticles();
+        NewsArticle latestNews = news.get(0);
 
         mav.addObject("newsArticles", news);
+        mav.addObject("sample", latestNews);
         mav.setViewName("news");
         return mav;
     }

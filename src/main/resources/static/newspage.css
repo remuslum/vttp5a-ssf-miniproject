@@ -1,0 +1,10 @@
+.summary {
+    font-family: "Raleway", serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: italic;
+}
+
+a {
+    text-decoration: none;
+}
